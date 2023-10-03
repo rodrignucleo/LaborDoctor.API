@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "WJWr8lA6OZzX5xgrZaE2FcSQvloWSFoa1HIC1+AFIdM=",
+  "Source": "LaborDoctor.API",
+  "BasePath": "_content/LaborDoctor.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
