@@ -3,11 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LaborDoctor.API.Models
 {
-    public enum Status
-    {
-        DISPONIVEL,
-        INDISPONIVEL
-    }
     public class ScheduleModel
     {
         [Key]
@@ -26,6 +21,6 @@ namespace LaborDoctor.API.Models
         // public TimeOnly? hora { get; set; }
 
         [Required(ErrorMessage = "Status é obrigatório!")]
-        public Status? status { get; set; }
+        public Boolean status { get; set; }
 }
 }

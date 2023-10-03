@@ -10,23 +10,38 @@ namespace LaborDoctor.API.Controllers.Schedule
     public class ScheduleController : ControllerBase
     {
         private readonly AppDbContext? _context;
-        public ScheduleController(AppDbContext context){
+        public ScheduleController(AppDbContext context)
+        {
             _context = context!;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ScheduleModel>>> GetSchedule(int id_medico){
+        public async Task<ActionResult<IEnumerable<ScheduleModel>>> GetSchedule(int id_medico)
+        {
             var Schedule = await _context!.tb_schedule!
+                .Include(x => x.medico)
                 .Where(x => x.id_medico == id_medico)
                 .OrderBy(g => g.data)
                 // .ThenBy(g => g.hora)
                 .ToListAsync();
-            
-            if(Schedule == null){
+
+            if (Schedule == null)
+            {
                 return NotFound();
             }
 
-            return Ok(Schedule);
+            var result = Schedule
+            // .Include(x => x.medico)
+            .Select(s => new {
+                s.id_schedule,
+                s.id_medico,
+                s.medico!.nome,
+                s.medico!.crm,
+                data = string.Format("{0:HH:mm dd/MM/yyyy }", s.data),
+            })
+            .ToList();
+
+            return Ok(result);
         }
 
         [HttpPut("{id_schedule}")]
@@ -52,14 +67,15 @@ namespace LaborDoctor.API.Controllers.Schedule
 
             _context.SaveChanges();
             return Ok(model);
-            
+
         }
 
         [HttpPost]
-        public async Task<ActionResult<ScheduleModel>> PostSchedule(ScheduleModel Schedule){
+        public async Task<ActionResult<ScheduleModel>> PostSchedule(ScheduleModel Schedule)
+        {
             var modelSchedule = _context!.tb_schedule!
                 .FirstOrDefault(x => x.data == Schedule.data && x.id_medico == Schedule.id_medico);
-            
+
             if (Schedule.data == null)
             {
                 return NotFound("Hora não digitada");
@@ -68,7 +84,7 @@ namespace LaborDoctor.API.Controllers.Schedule
             {
                 return NotFound("Esse médico já tem esse horário!");
             }
-            
+
             _context!.tb_schedule!.Add(Schedule);
             await _context.SaveChangesAsync();
 
@@ -76,9 +92,11 @@ namespace LaborDoctor.API.Controllers.Schedule
         }
 
         [HttpDelete("{id_schedule}")]
-        public async Task<ActionResult> DeleteSchedule(int id_schedule){
+        public async Task<ActionResult> DeleteSchedule(int id_schedule)
+        {
             var Schedule = await _context!.tb_schedule!.FindAsync(id_schedule);
-            if(Schedule == null){
+            if (Schedule == null)
+            {
                 return NotFound();
             }
 

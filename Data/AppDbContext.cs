@@ -105,10 +105,6 @@ namespace LaborDoctor.API.Data
                         senha_antiga = BCrypt.Net.BCrypt.HashPassword("gndi")
                     });
             });
-
-            modelBuilder.Entity<ScheduleModel>()
-                .Property(e => e.status)
-                .HasConversion<string>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
