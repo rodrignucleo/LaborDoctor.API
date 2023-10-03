@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LaborDoctor.API.Controllers.Schedule
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/schedule")]
     public class ScheduleController : ControllerBase
     {
         private readonly AppDbContext? _context;

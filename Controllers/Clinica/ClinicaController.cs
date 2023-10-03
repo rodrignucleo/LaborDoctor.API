@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LaborDoctor.API.Controllers.Clinica
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/clinica")]
     public class ClinicaController : ControllerBase
     {
         private readonly AppDbContext? _context;
