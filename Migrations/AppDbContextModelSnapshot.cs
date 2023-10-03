@@ -65,8 +65,8 @@ namespace LaborDoctor.API.Migrations
                             email = "root",
                             nome = "root Clinica",
                             nome_fantasia = "root Clinica",
-                            senha = "$2a$11$/RBkKz/9T.ArrFD9FzpvYeeLZwJeR/7V2vlN0tqmbNC6GO5pUdORW",
-                            senha_antiga = "$2a$11$j.X5NOY32I8.dZVnvgMFeuQilVQkRmbai34yp4WUyRDmfsxzvd6Um",
+                            senha = "$2a$11$.BPKGSKyr3agRZsqX4QKjeHdUxY2ejvqa/QZJ/QBcSOcC1H322QJW",
+                            senha_antiga = "$2a$11$XqUuE6eAXWhY0.UIvTX6teyLIdCF4S9hoOhBmhQerM2hwvvDVyhBy",
                             telefone = "(45) 96666-1234"
                         },
                         new
@@ -76,8 +76,8 @@ namespace LaborDoctor.API.Migrations
                             email = "gndi@clinica.com",
                             nome = "GNDI",
                             nome_fantasia = "GNDI",
-                            senha = "$2a$11$EIAHKn8lB/7hlDDfyN5QBeXt5obqEOc6hnaXAeYBGvtBieaPT/326",
-                            senha_antiga = "$2a$11$j8eB7zhT5dpyswUv9trp..Kc/HfDRV1xM8LnPevp73E5FXIcOr5By",
+                            senha = "$2a$11$a9KlXt2EC4OnncuvX5SXRum5AaLkrqBJKp3ncRESreBt5AUlLAT3.",
+                            senha_antiga = "$2a$11$RG0cJBhtejqs1..aej7D7eFcEZ0AgVjp7Vii2ZQFKb1ImvOvNqyQ.",
                             telefone = "(11) 98524-5698"
                         });
                 });
@@ -130,6 +130,10 @@ namespace LaborDoctor.API.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("especilidade")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("nome")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -149,6 +153,7 @@ namespace LaborDoctor.API.Migrations
                             cpf = "12345678910",
                             crm = "045465/SP",
                             email = "rodrignucleo@labordoctor.com",
+                            especilidade = "Cardiologista",
                             nome = "Rodrigo Ribeiro",
                             telefone = "11992668225"
                         },
@@ -158,6 +163,7 @@ namespace LaborDoctor.API.Migrations
                             cpf = "98765412398",
                             crm = "221748/PR",
                             email = "patricia.oliveira@labordoctor.com",
+                            especilidade = "Ginecologista",
                             nome = "Patricia Oliveira",
                             telefone = "9899265826597"
                         });
@@ -204,8 +210,8 @@ namespace LaborDoctor.API.Migrations
                             cpf = "111.222.333-44",
                             email = "root",
                             nome = "root Paciente",
-                            senha = "$2a$11$ldvApVZiSo8eUqAWQgYyzelH28inpkCQh8yyzrz8iwG9BghrLiJR6",
-                            senha_antiga = "$2a$11$3u3rweKeYugjG.OxhXB9BOEhcIzLGpv/JqIxi/UTJLID8/p9KQXTm",
+                            senha = "$2a$11$tobR69JpNGrjJOIHvBxzEubnlyMeFvQGfnNh4cjlERXM.zfqF3Wwm",
+                            senha_antiga = "$2a$11$sL8CvN4vsttkRF70gOyKcutncrtkn5Gr.wxkcq5m.tBBj0.LgmjTW",
                             telefone = "(45) 96666-1234"
                         },
                         new
@@ -214,8 +220,8 @@ namespace LaborDoctor.API.Migrations
                             cpf = "987.458.236-98",
                             email = "estevao@labordoctor.com",
                             nome = "Estevão Rocha",
-                            senha = "$2a$11$he2o1bO0UNWWOIMf6/pM1eFyxOXtBakeLQdVkIbG2juOJ8E9ubqS6",
-                            senha_antiga = "$2a$11$0mjM6ON0eTSrDV8zNrrbiOt/eFgJfNzL8t9HVk/jt0d4sxPRFRMK6",
+                            senha = "$2a$11$whrcnXRFb5XACv8XggPF7unAiEExwuZaZTe4scqQXCumJzNjLMCku",
+                            senha_antiga = "$2a$11$S9eg7IHpCy9sP1RYEeuI9OYTaDcgnpqQ4h2AfUJFIpv.RVdwV49LO",
                             telefone = "(11) 99478-5200"
                         });
                 });

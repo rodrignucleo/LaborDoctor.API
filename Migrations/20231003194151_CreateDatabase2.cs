@@ -9,7 +9,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace LaborDoctor.API.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDatabase : Migration
+    public partial class CreateDatabase2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,6 +46,7 @@ namespace LaborDoctor.API.Migrations
                     nome = table.Column<string>(type: "longtext", nullable: false),
                     crm = table.Column<string>(type: "longtext", nullable: false),
                     cpf = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
+                    especilidade = table.Column<string>(type: "longtext", nullable: false),
                     telefone = table.Column<string>(type: "longtext", nullable: false),
                     email = table.Column<string>(type: "longtext", nullable: false)
                 },
@@ -82,7 +83,7 @@ namespace LaborDoctor.API.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     id_medico = table.Column<int>(type: "int", nullable: false),
                     data = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    status = table.Column<string>(type: "longtext", nullable: false)
+                    status = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -135,17 +136,17 @@ namespace LaborDoctor.API.Migrations
                 columns: new[] { "id_clinica", "cnpj", "email", "nome", "nome_fantasia", "senha", "senha_antiga", "telefone" },
                 values: new object[,]
                 {
-                    { 1, "11.777.5555/0001-99", "root", "root Clinica", "root Clinica", "$2a$11$19BcqD1injq6X4b0kjoIheO7ZVLQOlNEZR3h53JUWX2p0cBKM1cb.", "$2a$11$eBC.zEW1SYnM8Ai5J3.oFOfmicATeCxoKwikdzqcrP94Xnm6Wh10m", "(45) 96666-1234" },
-                    { 2, "10.136.4860/0001-85", "gndi@clinica.com", "GNDI", "GNDI", "$2a$11$FsPKSrUlgkBEwNiJvmsEaeZiqBa/zNzUBFD2fpU8G3oUMvYmzlEhS", "$2a$11$Z9XDi7rBlbZPkQnKKVzDOudp8p0RlBQK1eljSHxWFgOgj6SoajeYK", "(11) 98524-5698" }
+                    { 1, "11.777.5555/0001-99", "root", "root Clinica", "root Clinica", "$2a$11$.BPKGSKyr3agRZsqX4QKjeHdUxY2ejvqa/QZJ/QBcSOcC1H322QJW", "$2a$11$XqUuE6eAXWhY0.UIvTX6teyLIdCF4S9hoOhBmhQerM2hwvvDVyhBy", "(45) 96666-1234" },
+                    { 2, "10.136.4860/0001-85", "gndi@clinica.com", "GNDI", "GNDI", "$2a$11$a9KlXt2EC4OnncuvX5SXRum5AaLkrqBJKp3ncRESreBt5AUlLAT3.", "$2a$11$RG0cJBhtejqs1..aej7D7eFcEZ0AgVjp7Vii2ZQFKb1ImvOvNqyQ.", "(11) 98524-5698" }
                 });
 
             migrationBuilder.InsertData(
                 table: "tb_medico",
-                columns: new[] { "id_medico", "cpf", "crm", "email", "nome", "telefone" },
+                columns: new[] { "id_medico", "cpf", "crm", "email", "especilidade", "nome", "telefone" },
                 values: new object[,]
                 {
-                    { 1, "12345678910", "045465/SP", "rodrignucleo@labordoctor.com", "Rodrigo Ribeiro", "11992668225" },
-                    { 2, "98765412398", "221748/PR", "patricia.oliveira@labordoctor.com", "Patricia Oliveira", "9899265826597" }
+                    { 1, "12345678910", "045465/SP", "rodrignucleo@labordoctor.com", "Cardiologista", "Rodrigo Ribeiro", "11992668225" },
+                    { 2, "98765412398", "221748/PR", "patricia.oliveira@labordoctor.com", "Ginecologista", "Patricia Oliveira", "9899265826597" }
                 });
 
             migrationBuilder.InsertData(
@@ -153,8 +154,8 @@ namespace LaborDoctor.API.Migrations
                 columns: new[] { "id_paciente", "cpf", "email", "nome", "senha", "senha_antiga", "telefone" },
                 values: new object[,]
                 {
-                    { 1, "111.222.333-44", "root", "root Paciente", "$2a$11$2lFVphB3ncST3EityNCBj.CFzfzb70LUyRQJlL6B2G/sKwUHYKPku", "$2a$11$fnBFJAQGooSZIf.gaoa1keUbQkzStpNjNtRan.LnBj/ptag188GyO", "(45) 96666-1234" },
-                    { 2, "987.458.236-98", "estevao@labordoctor.com", "Estevão Rocha", "$2a$11$6CGChrSicZCdxGRKImWO4u4rpbR9fUgkbHCw8EbgsDuqr/77nfm5i", "$2a$11$JnEILtUHKQtyOmbAG9yl0OfsqmjeiaaJN8RZX5r96fIlCQ.U6aSue", "(11) 99478-5200" }
+                    { 1, "111.222.333-44", "root", "root Paciente", "$2a$11$tobR69JpNGrjJOIHvBxzEubnlyMeFvQGfnNh4cjlERXM.zfqF3Wwm", "$2a$11$sL8CvN4vsttkRF70gOyKcutncrtkn5Gr.wxkcq5m.tBBj0.LgmjTW", "(45) 96666-1234" },
+                    { 2, "987.458.236-98", "estevao@labordoctor.com", "Estevão Rocha", "$2a$11$whrcnXRFb5XACv8XggPF7unAiEExwuZaZTe4scqQXCumJzNjLMCku", "$2a$11$S9eg7IHpCy9sP1RYEeuI9OYTaDcgnpqQ4h2AfUJFIpv.RVdwV49LO", "(11) 99478-5200" }
                 });
 
             migrationBuilder.CreateIndex(

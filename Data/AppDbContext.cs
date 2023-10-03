@@ -31,6 +31,7 @@ namespace LaborDoctor.API.Data
                         nome = "Rodrigo Ribeiro",
                         crm = "045465/SP",
                         cpf = "12345678910",
+                        especilidade = "Cardiologista",
                         telefone = "11992668225",
                         email = "rodrignucleo@labordoctor.com"
                     });
@@ -41,6 +42,7 @@ namespace LaborDoctor.API.Data
                         nome = "Patricia Oliveira",
                         crm = "221748/PR",
                         cpf = "98765412398",
+                        especilidade = "Ginecologista",
                         telefone = "9899265826597",
                         email = "patricia.oliveira@labordoctor.com",
                     });
@@ -109,7 +111,7 @@ namespace LaborDoctor.API.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseMySQL("server=127.0.0.1;database=LaborDoctor_db;user=root;port=3307;password=123123");
+            options.UseMySQL("server=127.0.0.1;database=labordoctor_db;user=root;port=3307;password=123123");
         }
 
     }

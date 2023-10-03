@@ -18,6 +18,9 @@ namespace LaborDoctor.API.Models
         [Required(ErrorMessage = "CPF é obrigatório!")]
         public string? cpf { get; set; }
 
+        [Required(ErrorMessage = "Especialidade é obrigatório!")]
+        public string? especilidade { get; set; }
+
         [Required(ErrorMessage = "Telefone é obrigatório!")]
         public string? telefone { get; set; }
 
