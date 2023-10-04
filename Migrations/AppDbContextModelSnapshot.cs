@@ -65,8 +65,8 @@ namespace LaborDoctor.API.Migrations
                             email = "root",
                             nome = "root Clinica",
                             nome_fantasia = "root Clinica",
-                            senha = "$2a$11$.BPKGSKyr3agRZsqX4QKjeHdUxY2ejvqa/QZJ/QBcSOcC1H322QJW",
-                            senha_antiga = "$2a$11$XqUuE6eAXWhY0.UIvTX6teyLIdCF4S9hoOhBmhQerM2hwvvDVyhBy",
+                            senha = "$2a$11$rTpo3B4ptIbhr362BlZp2OflmtP4BmRUdae.1g/UZt2216F29lMUK",
+                            senha_antiga = "$2a$11$ItYL4MDrrcm7f6PhwCJ9Y.yJT4DHkWEmojFr82sLIOcZGEwEit2Pu",
                             telefone = "(45) 96666-1234"
                         },
                         new
@@ -76,8 +76,8 @@ namespace LaborDoctor.API.Migrations
                             email = "gndi@clinica.com",
                             nome = "GNDI",
                             nome_fantasia = "GNDI",
-                            senha = "$2a$11$a9KlXt2EC4OnncuvX5SXRum5AaLkrqBJKp3ncRESreBt5AUlLAT3.",
-                            senha_antiga = "$2a$11$RG0cJBhtejqs1..aej7D7eFcEZ0AgVjp7Vii2ZQFKb1ImvOvNqyQ.",
+                            senha = "$2a$11$tusVPV9fLFVeDVdZY1RJYuEpht93qQtpGcgT.v6pcnxb.1w0hnb6.",
+                            senha_antiga = "$2a$11$AM3lWaOGY8JcrB3Lu0RHHeS2DSJsNKj7gjyUuFp24HB2rBrSaiFPS",
                             telefone = "(11) 98524-5698"
                         });
                 });
@@ -99,6 +99,9 @@ namespace LaborDoctor.API.Migrations
                     b.Property<int?>("id_schedule")
                         .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<bool?>("status")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("id_consulta");
 
@@ -210,8 +213,8 @@ namespace LaborDoctor.API.Migrations
                             cpf = "111.222.333-44",
                             email = "root",
                             nome = "root Paciente",
-                            senha = "$2a$11$tobR69JpNGrjJOIHvBxzEubnlyMeFvQGfnNh4cjlERXM.zfqF3Wwm",
-                            senha_antiga = "$2a$11$sL8CvN4vsttkRF70gOyKcutncrtkn5Gr.wxkcq5m.tBBj0.LgmjTW",
+                            senha = "$2a$11$SUAEicHbAD4DGXySJC99kOfAf5NU09wqGsqhttNQtRfAcsyORzVCm",
+                            senha_antiga = "$2a$11$ni054ic4B7/tV5baUBOMD.lk7A.N3oUXkmAO7pK6qdxMhPG8W5XkG",
                             telefone = "(45) 96666-1234"
                         },
                         new
@@ -220,8 +223,8 @@ namespace LaborDoctor.API.Migrations
                             cpf = "987.458.236-98",
                             email = "estevao@labordoctor.com",
                             nome = "Estevão Rocha",
-                            senha = "$2a$11$whrcnXRFb5XACv8XggPF7unAiEExwuZaZTe4scqQXCumJzNjLMCku",
-                            senha_antiga = "$2a$11$S9eg7IHpCy9sP1RYEeuI9OYTaDcgnpqQ4h2AfUJFIpv.RVdwV49LO",
+                            senha = "$2a$11$Wimac5qBxvI7tEYgRVZUuu8Es9JyORY1HFKtJ3ctumxYcOV.zv9B.",
+                            senha_antiga = "$2a$11$dYo7k9UAE.ZnpNMqEFSquef32Bg1.iFK9R6kW3o0eOQH5uEiWV5We",
                             telefone = "(11) 99478-5200"
                         });
                 });
@@ -248,6 +251,22 @@ namespace LaborDoctor.API.Migrations
                     b.HasIndex("id_medico");
 
                     b.ToTable("tb_schedule");
+
+                    b.HasData(
+                        new
+                        {
+                            id_schedule = 1,
+                            data = new DateTime(2023, 10, 3, 21, 32, 26, 597, DateTimeKind.Local).AddTicks(7699),
+                            id_medico = 1,
+                            status = true
+                        },
+                        new
+                        {
+                            id_schedule = 2,
+                            data = new DateTime(2023, 10, 31, 10, 32, 26, 597, DateTimeKind.Local).AddTicks(7728),
+                            id_medico = 1,
+                            status = false
+                        });
                 });
 
             modelBuilder.Entity("LaborDoctor.API.Models.ConsultaModel", b =>

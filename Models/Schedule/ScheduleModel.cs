@@ -21,6 +21,6 @@ namespace LaborDoctor.API.Models
         // public TimeOnly? hora { get; set; }
 
         [Required(ErrorMessage = "Status é obrigatório!")]
-        public Boolean status { get; set; }
+        public bool status { get; set; }
 }
 }

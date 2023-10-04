@@ -19,6 +19,8 @@ namespace LaborDoctor.API.Models
         public int? id_medico { get; set; }
         public MedicoModel? medico { get; set; }
 
+        public bool? status { get; set; }
+
         [Required(ErrorMessage = "Horário é obrigatório!")]
         [ForeignKey("schedule")]
         public int? id_schedule { get; set; }

@@ -37,6 +37,7 @@ namespace LaborDoctor.API.Controllers.Schedule
                 s.id_medico,
                 s.medico!.nome,
                 s.medico!.crm,
+                s.status,
                 data = string.Format("{0:HH:mm dd/MM/yyyy }", s.data),
             })
             .ToList();

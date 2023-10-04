@@ -48,6 +48,31 @@ namespace LaborDoctor.API.Data
                     });
             });
 
+            modelBuilder.Entity<ScheduleModel>(entity =>
+            {
+                entity.HasKey(e => e.id_schedule);
+                entity.Property(e => e.status).HasConversion<Boolean>();
+                entity.Property(e => e.status).IsRequired();
+                entity.Property(e => e.id_medico).IsRequired();
+                entity.HasData(
+                    new ScheduleModel
+                    {
+                        id_schedule = 1,
+                        id_medico = 1,
+                        data = DateTime.Now,
+                        status = true
+                    });
+                entity.HasData(
+                    new ScheduleModel
+                    {
+                        id_schedule = 2,
+                        id_medico = 1,
+                        data = DateTime.Now.AddDays(27).AddHours(13),
+                        status = false
+                    });
+            });
+
+
             modelBuilder.Entity<PacienteModel>(entity =>
             {
                 entity.HasKey(e => e.id_paciente);
