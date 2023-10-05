@@ -6,7 +6,6 @@ namespace LaborDoctor.API.Data
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
         public DbSet<MedicoModel>? tb_medico { get; set; }
         public DbSet<ClinicaModel>? tb_clinica { get; set; }
         public DbSet<PacienteModel>? tb_paciente { get; set; }

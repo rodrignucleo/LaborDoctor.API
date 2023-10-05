@@ -10,20 +10,32 @@ namespace LaborDoctor.API.Controllers.Medico
     public class MedicoController : ControllerBase
     {
         private readonly AppDbContext? _context;
-        public MedicoController(AppDbContext context){
+        public MedicoController(AppDbContext context)
+        {
             _context = context!;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MedicoModel>>> GetMedico(){
+        public async Task<ActionResult<IEnumerable<MedicoModel>>> GetMedico()
+        {
+            // var medicos = await _context!.tb_medico!.OrderBy(g => g.nome).ToListAsync();  // Supondo que você tenha um _context
+
+            // var response = new ResponseModel
+            // {
+            //     tb_medico = medicos
+            // };
+
+            // return Ok(response);
             return await _context!.tb_medico!.OrderBy(g => g.nome).ToListAsync();
         }
 
         [HttpGet("{id_medico}")]
-        public async Task<ActionResult<MedicoModel>> GetMedico(int id_medico){
+        public async Task<ActionResult<MedicoModel>> GetMedico(int id_medico)
+        {
             var Medico = await _context!.tb_medico!.FindAsync(id_medico);
-            
-            if(Medico == null){
+
+            if (Medico == null)
+            {
                 return NotFound();
             }
             return Medico;
@@ -45,21 +57,24 @@ namespace LaborDoctor.API.Controllers.Medico
             }
 
             model.nome = Medico.nome;
+            model.crm = Medico.crm;
+            model.especilidade = Medico.especilidade;
             model.cpf = Medico.cpf;
-            model.telefone = Medico.cpf;
+            model.telefone = Medico.telefone;
             model.email = Medico.email;
 
             _context.tb_medico!.Update(model);
 
             _context.SaveChanges();
             return Ok(model);
-            
+
         }
 
         [HttpPost]
-        public async Task<ActionResult<MedicoModel>> PostMedico(MedicoModel Medico){
+        public async Task<ActionResult<MedicoModel>> PostMedico(MedicoModel Medico)
+        {
             var modelMedico = _context!.tb_medico!.FirstOrDefault(x => x.email == Medico.email);
-            
+
             if (Medico.email == "")
             {
                 return NotFound("Email não digitado");
@@ -68,7 +83,7 @@ namespace LaborDoctor.API.Controllers.Medico
             {
                 return NotFound("Esse email já esta cadastrado!");
             }
-            
+
             _context!.tb_medico!.Add(Medico);
             await _context.SaveChangesAsync();
 
@@ -77,9 +92,11 @@ namespace LaborDoctor.API.Controllers.Medico
         }
 
         [HttpDelete("{id_medico}")]
-        public async Task<ActionResult> DeleteMedico(int id_medico){
+        public async Task<ActionResult> DeleteMedico(int id_medico)
+        {
             var Medico = await _context!.tb_medico!.FindAsync(id_medico);
-            if(Medico == null){
+            if (Medico == null)
+            {
                 return NotFound();
             }
 

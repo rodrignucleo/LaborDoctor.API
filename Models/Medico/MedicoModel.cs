@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LaborDoctor.API.Models
 {
+public class ResponseModel{
+    public List<MedicoModel> ?tb_medico { get; set; }
+}
+
     public class MedicoModel
     {
         [Key]
